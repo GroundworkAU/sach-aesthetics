@@ -802,6 +802,7 @@ p:last-child { margin-bottom: 0; }
 
 @media (min-width: 700px) {
   :root { --gutter: 40px; }
+  .banner { min-height: clamp(420px, 42vw, 580px); }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .tiles { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); }
@@ -811,6 +812,10 @@ p:last-child { margin-bottom: 0; }
 
 @media (min-width: 1000px) {
   :root { --header-h: 78px; --gutter: 56px; }
+  /* Banner artwork is 1512x812 (1.86:1). Tracking that ratio keeps the crop
+     shallow instead of slicing the top and bottom off on wide screens. */
+  .banner { min-height: clamp(600px, 54vw, 880px); }
+  .banner h1 { font-size: clamp(48px, 5.2vw, 82px); }
   .nav { display: block; margin-left: 46px; }
   .header .header__cta { display: inline-flex; margin-left: auto; }
   .burger { display: none; }
