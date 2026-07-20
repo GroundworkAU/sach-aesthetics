@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": false,
+  "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
     {
@@ -14,15 +14,6 @@
     },
     {
       "source": "/assets/(css|js)/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)\\.html",
       "headers": [
         {
           "key": "Cache-Control",
@@ -51,37 +42,37 @@
   "redirects": [
     {
       "source": "/pages/treatments",
-      "destination": "/treatments.html",
+      "destination": "/treatments",
       "permanent": true
     },
     {
       "source": "/pages/microneedling",
-      "destination": "/microneedling.html",
+      "destination": "/microneedling",
       "permanent": true
     },
     {
       "source": "/pages/facial-treatments",
-      "destination": "/facial-treatments.html",
+      "destination": "/facial-treatments",
       "permanent": true
     },
     {
       "source": "/pages/chemical-peels",
-      "destination": "/chemical-peels.html",
+      "destination": "/chemical-peels",
       "permanent": true
     },
     {
       "source": "/pages/lashes-brows",
-      "destination": "/lashes-brows.html",
+      "destination": "/lashes-brows",
       "permanent": true
     },
     {
       "source": "/pages/contact",
-      "destination": "/contact.html",
+      "destination": "/contact",
       "permanent": true
     },
     {
       "source": "/pages/location",
-      "destination": "/location.html",
+      "destination": "/location",
       "permanent": true
     }
   ]

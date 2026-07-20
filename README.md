@@ -7,16 +7,18 @@ A static website. No build step, no framework, no dependencies. Plain HTML, one 
 | File | Live path | Replaces |
 |---|---|---|
 | `index.html` | `/` | sachaesthetics.com.au |
-| `treatments.html` | `/treatments.html` | /pages/treatments |
-| `facial-treatments.html` | `/facial-treatments.html` | /pages/facial-treatments |
-| `chemical-peels.html` | `/chemical-peels.html` | /pages/chemical-peels |
-| `microneedling.html` | `/microneedling.html` | /pages/microneedling |
-| `lashes-brows.html` | `/lashes-brows.html` | /pages/lashes-brows |
-| `location.html` | `/location.html` | /pages/location |
-| `contact.html` | `/contact.html` | /pages/contact |
+| `treatments.html` | `/treatments` | /pages/treatments |
+| `facial-treatments.html` | `/facial-treatments` | /pages/facial-treatments |
+| `chemical-peels.html` | `/chemical-peels` | /pages/chemical-peels |
+| `microneedling.html` | `/microneedling` | /pages/microneedling |
+| `lashes-brows.html` | `/lashes-brows` | /pages/lashes-brows |
+| `location.html` | `/location` | /pages/location |
+| `contact.html` | `/contact` | /pages/contact |
 | `404.html` | any bad URL | — |
 
 Booking is not a page. Every "Book" button links straight out to Fresha.
+
+URLs have no `.html` extension. `cleanUrls` in `vercel.json` handles that, and Vercel redirects any old `.html` link to the clean version automatically. Keep the `.html` on the actual filenames; only the links drop it.
 
 `vercel.json` already redirects the old Shopify `/pages/...` URLs to the new ones, so existing links and search results keep working.
 
