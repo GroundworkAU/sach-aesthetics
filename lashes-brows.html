@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -71,7 +71,10 @@
 
   <section class="banner">
     <div class="banner__media">
-      <img src="/assets/img/LASHES__BROWS.jpg" alt="Close detail of natural lashes and a groomed brow" fetchpriority="high">
+      <picture>
+        <source media="(min-width: 700px)" srcset="/assets/img/LASHES__BROWS.jpg">
+        <img src="/assets/img/LASHES__BROWS-left.jpg" alt="Close detail of natural lashes and a groomed brow" fetchpriority="high">
+      </picture>
     </div>
     <div class="wrap banner__body">
       <span class="label">Treatments</span>
@@ -215,6 +218,6 @@
   <a class="btn" href="https://www.fresha.com/a/sach-aesthetics-edwardstown-32-lindfield-avenue-c9ze8f2w" target="_blank" rel="noopener">Book an appointment</a>
 </div>
 
-<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/main.js?v=3" defer></script>
 </body>
 </html>
