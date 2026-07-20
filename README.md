@@ -28,17 +28,38 @@ URLs have no `.html` extension. `cleanUrls` in `vercel.json` handles that, and V
 
 ### 1. Turn on the contact form
 
-The form in `contact.html` needs somewhere to send messages. Free option, takes two minutes:
+The form posts to `/api/contact`, a small serverless function that emails you via
+Resend. It will not send anything until three environment variables are set.
 
-1. Go to [formspree.io](https://formspree.io) and create a free account.
-2. Create a new form and copy the form ID it gives you (looks like `xdorbgqw`).
-3. Open `contact.html`, find this line:
-   ```html
-   <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-   ```
-4. Replace `YOUR_FORM_ID` with your ID and save.
+**Get a Resend account**
 
-The free tier allows 50 submissions a month. If you would rather not use a form at all, delete the `<form>` block and put your email address in the contact details list beside it.
+1. Sign up free at [resend.com](https://resend.com). The free tier covers 3,000 emails a month.
+2. Add `sachaesthetics.com.au` under **Domains** and create the DNS records it gives you
+   at HostPapa. This is what lets email be sent *from* your own domain.
+3. Under **API Keys**, create a key with send permission. It starts with `re_`.
+   Copy it now, it is only shown once.
+
+**Add the variables in Vercel**
+
+Project > Settings > Environment Variables. Add all three to Production,
+Preview and Development:
+
+| Name | Value |
+|---|---|
+| `RESEND_API_KEY` | the `re_...` key from Resend |
+| `CONTACT_TO` | where enquiries land, e.g. `hello@sachaesthetics.com.au` |
+| `CONTACT_FROM` | the verified sender, e.g. `Sach Aesthetics <website@sachaesthetics.com.au>` |
+
+Redeploy after adding them. Environment variables are only read at deploy time,
+so an existing deployment will not pick them up.
+
+`CONTACT_FROM` must be on a domain verified in Resend. Until you verify yours,
+you can use `onboarding@resend.dev` to test, but it can only deliver to the
+address you signed up with.
+
+**Never put the API key in the HTML, the CSS or `main.js`.** Anything in those
+files is public. The key belongs only in the Vercel environment variables, which
+is why the sending happens in `api/contact.js` on the server.
 
 ### 2. Add your email address
 
@@ -138,6 +159,7 @@ Copy the whole block to add a new service. Delete it to remove one.
 - **Address privacy.** The full street address appears nowhere in the visible content. The location page names the suburb only, the map is pinned to Edwardstown generally, and the copy says details are shared after booking. The Fresha URL does contain the street name, which is Fresha's own listing format and outside this site's control. Link text everywhere reads "Book on Fresha" rather than showing the URL.
 - **Mobile.** Single column below 700px, a full screen menu behind the burger, and a booking button fixed to the bottom of the screen on every page so booking is always one tap away. It disappears on desktop, where the button sits in the header instead.
 - **Accessibility.** Skip link, visible keyboard focus, labelled form fields, alt text on meaningful images, and all animation disabled for anyone who has reduced motion turned on.
+- **Spam.** The form carries a hidden honeypot field. Bots fill it in, people never see it, and those submissions are silently dropped. There is no CAPTCHA, so nobody has to identify traffic lights.
 - **Speed.** Two fonts from Google, roughly 20KB of CSS and JS combined, images lazy loaded below the fold. There is no JavaScript framework and nothing to wait for.
 - **What was dropped.** The Shopify product catalogue, cart, customer accounts, the Miod skincare collection and the newsletter signup are all gone, since they were not on your list of pages to keep. If you want to sell skincare later, the cleanest route is a "Shop" link pointing at a separate storefront rather than rebuilding a cart here.
 

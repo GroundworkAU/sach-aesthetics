@@ -659,6 +659,30 @@ p:last-child { margin-bottom: 0; }
   color: var(--ink-faint);
 }
 
+/* Honeypot: off screen rather than display:none, which some bots detect */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form__status {
+  font-family: var(--util);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 2px solid var(--mulberry);
+  background: rgba(124, 59, 68, 0.06);
+  color: var(--ink);
+}
+.form__status[data-state="ok"] {
+  border-left-color: #4F7A52;
+  background: rgba(79, 122, 82, 0.08);
+}
+
 /* ------------------------------------------------------------ Contact kv -- */
 
 .kv { display: grid; gap: 26px; }

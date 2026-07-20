@@ -57,6 +57,65 @@
   reveals.forEach(function (el) { io.observe(el); });
 })();
 
+/* ---- Contact form ---- */
+(function () {
+  'use strict';
+
+  var form = document.querySelector('form[action="/api/contact"]');
+  if (!form) return;
+
+  var status = form.querySelector('.form__status');
+  var button = form.querySelector('button[type="submit"]');
+  var label = button ? button.textContent : 'Send message';
+
+  function show(text, state) {
+    if (!status) return;
+    status.textContent = text;
+    status.setAttribute('data-state', state);
+    status.hidden = false;
+  }
+
+  // Someone arriving back here after a no-JavaScript submission
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('sent')) {
+    show('Thank you, your message has been sent. I will be in touch within two business days.', 'ok');
+  } else if (params.get('error')) {
+    show('Something went wrong sending that. Please try again, or reach me on Instagram.', 'error');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var data = {};
+    new FormData(form).forEach(function (value, key) { data[key] = value; });
+
+    if (button) { button.disabled = true; button.textContent = 'Sending'; }
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+      .then(function (res) {
+        return res.json().then(function (payload) { return { ok: res.ok, payload: payload }; });
+      })
+      .then(function (result) {
+        if (result.ok) {
+          form.reset();
+          show('Thank you, your message has been sent. I will be in touch within two business days.', 'ok');
+        } else {
+          show(result.payload.error || 'Could not send that. Please try again.', 'error');
+        }
+      })
+      .catch(function () {
+        show('Could not send that. Please check your connection and try again.', 'error');
+      })
+      .then(function () {
+        if (button) { button.disabled = false; button.textContent = label; }
+      });
+  });
+})();
+
 /* ---- Footer year ---- */
 document.querySelectorAll('[data-year]').forEach(function (el) {
   el.textContent = new Date().getFullYear();
