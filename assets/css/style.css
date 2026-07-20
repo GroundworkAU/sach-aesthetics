@@ -138,12 +138,12 @@ p:last-child { margin-bottom: 0; }
   height: var(--header-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 14px;
 }
 
 .brand { display: inline-flex; align-items: center; text-decoration: none; }
-.brand img { height: 17px; width: auto; }
+.brand img { height: 24px; width: auto; }
 
 .nav { display: none; }
 
@@ -219,16 +219,17 @@ p:last-child { margin-bottom: 0; }
 .nav__sub a::after { display: none; }
 .nav__sub a:hover { color: var(--mulberry); }
 
-.header__cta { display: none; }
+/* Two classes so the later `.btn { display: inline-flex }` cannot win on order */
+.header .header__cta { display: none; }
 
-/* Burger */
+/* Burger — sits first in the bar on mobile */
 .burger {
   appearance: none;
   background: none;
   border: 0;
   width: 40px;
   height: 40px;
-  margin-right: -8px;
+  margin-left: -10px;
   display: grid;
   place-content: center;
   gap: 5px;
@@ -796,12 +797,12 @@ p:last-child { margin-bottom: 0; }
 
 @media (min-width: 1000px) {
   :root { --header-h: 78px; --gutter: 56px; }
-  .nav { display: block; }
-  .header__cta { display: inline-flex; }
+  .nav { display: block; margin-left: 46px; }
+  .header .header__cta { display: inline-flex; margin-left: auto; }
   .burger { display: none; }
   .drawer { display: none; }
   .bookbar { display: none; }
-  .brand img { height: 19px; }
+  .brand img { height: 34px; }
   .split { grid-template-columns: 1fr 1fr; gap: 88px; }
   .cards { grid-template-columns: repeat(4, 1fr); }
   .tiles { grid-template-columns: repeat(3, 1fr); }
