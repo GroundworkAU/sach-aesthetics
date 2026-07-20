@@ -135,6 +135,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .header__inner {
+  position: relative;
   height: var(--header-h);
   display: flex;
   align-items: center;
@@ -813,6 +814,13 @@ p:last-child { margin-bottom: 0; }
 
 @media (max-width: 999px) {
   body { padding-bottom: 74px; }
+
+  /* Centred against the viewport, not against the space left over by the burger */
+  .brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
