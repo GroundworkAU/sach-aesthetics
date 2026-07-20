@@ -117,12 +117,6 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
-.lead {
-  font-size: clamp(19px, 2.1vw, 23px);
-  line-height: 1.55;
-  color: var(--ink-soft);
-}
-
 /* --------------------------------------------------------------- Header -- */
 
 .header {
@@ -565,8 +559,6 @@ p:last-child { margin-bottom: 0; }
 .ledger__desc {
   margin-top: 12px;
   max-width: 66ch;
-  color: var(--ink-soft);
-  font-size: 16px;
 }
 
 .ledger__book {
@@ -608,7 +600,7 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: 14px;
 }
 
-.tile p { color: var(--ink-soft); font-size: 16px; }
+.tile p { color: var(--ink); }
 
 /* ---------------------------------------------------------------- Quote -- */
 
@@ -726,7 +718,6 @@ p:last-child { margin-bottom: 0; }
 
 .footer__blurb {
   color: rgba(243, 238, 232, 0.68);
-  font-size: 16px;
   max-width: 38ch;
 }
 
